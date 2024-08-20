@@ -58,6 +58,14 @@ resource "azurerm_mysql_flexible_server" "mysql" {
     }
   }
 
+  dynamic "identity" {
+    for_each = try(var.settings.identity, null) == null ? [] : [1]
+    content {
+      type         = "UserAssigned"
+      identity_ids = local.managed_identities
+    }
+  }
+  
   lifecycle {
     ignore_changes = [
       private_dns_zone_id,
