@@ -5,7 +5,7 @@
 locals {
   managed_local_identities = flatten([
     for managed_identity_key in try(var.settings.identity.managed_identity_keys, []) : [
-      var.managed_identities[var.client_config.landingzone_key][managed_identity_key].id
+      var.combined_resources.managed_identities[var.client_config.landingzone_key][managed_identity_key].id
     ]
   ])
 
