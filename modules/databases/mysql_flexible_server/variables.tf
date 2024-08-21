@@ -36,3 +36,8 @@ variable "location" {
 variable "managed_identities" {
   default = {}
 }
+
+variable "combined_resources" {
+  description = "Provide a map of combined resources for environment_variables_from_resources"
+  default     = {}
+}
